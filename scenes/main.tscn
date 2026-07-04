@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bypdjcwxokpsf"]
+
+[ext_resource type="PackedScene" uid="uid://dbq8ehojckicb" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://bbau4jk6jx16m" path="res://scripts/player.gd" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://3npmhwfbfs8q" path="res://scenes/wall.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://csn278r5wbonv" path="res://scenes/camera.tscn" id="4_jyhfs"]
+
+[node name="Main" type="Node2D" unique_id=2039696867]
+
+[node name="Player" parent="." unique_id=1742384768 instance=ExtResource("1_o5qli")]
+script = ExtResource("2_0wfyh")
+
+[node name="Wall" parent="." unique_id=521120615 instance=ExtResource("3_sugp2")]
+position = Vector2(1, 101)
+scale = Vector2(25.35, 1)
+
+[node name="Camera" parent="." unique_id=760187194 node_paths=PackedStringArray("target") instance=ExtResource("4_jyhfs")]
+target = NodePath("../Player")
