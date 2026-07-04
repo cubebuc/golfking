@@ -8,6 +8,11 @@ extends RigidBody2D
 @export var initial_movement_threshold: float = 12.0
 @export var movement_threshold: float = 15.0
 
+@export var layer_damp: Dictionary = {
+	"Map": 4,
+	"MapSand": 18
+}
+
 var power: float = 0
 var angle: float = 0
 var is_stationary = false
@@ -50,3 +55,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("launch") or power >= power_max:
 		self.apply_impulse(Vector2.UP.rotated(angle) * power)
 		power = 0
+
+
+func _on_body_entered(body: Node) -> void:
+	print("Player entered body: " + str(body.name))
+	if body.name == "Map":
+		self.angular_damp = layer_damp["Map"]
+	elif body.name == "MapSand":
+		self.angular_damp = layer_damp["MapSand"]

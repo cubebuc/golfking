@@ -13,6 +13,9 @@ z_index = 10
 physics_material_override = ExtResource("1_dqkch")
 can_sleep = false
 continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 17
+angular_damp = 3.0
 script = ExtResource("1_qhqgy")
 
 [node name="BallSprite" type="Sprite2D" parent="." unique_id=911921984]
@@ -49,3 +52,5 @@ texture_progress = ExtResource("1_3vyb7")
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("2_g2els")
 offset = Vector2(0, -700)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
