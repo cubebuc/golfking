@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	$ArrowSprite.rotation = angle - self.rotation
+	$TextureProgressBar.value = power / power_max * 100
 
 	if Input.is_action_pressed("ui_left"):
 		angle -= angle_speed * delta
