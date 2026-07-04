@@ -1,15 +1,21 @@
 [gd_scene format=3 uid="uid://dbq8ehojckicb"]
 
-[ext_resource type="Texture2D" uid="uid://cbqjteq3r2v8g" path="res://icon.svg" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://bwgj30yc88c2m" path="res://assets/ball.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://w8chdwd1wlae" path="res://assets/arrow.png" id="2_g2els"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vq1vm"]
-radius = 31.144823
+[sub_resource type="CircleShape2D" id="CircleShape2D_fnrti"]
+radius = 16.0
 
 [node name="Player" type="RigidBody2D" unique_id=86294250]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=911921984]
+[node name="BallSprite" type="Sprite2D" parent="." unique_id=911921984]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_3vyb7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2100933697]
-shape = SubResource("CircleShape2D_vq1vm")
+[node name="ArrowSprite" type="Sprite2D" parent="." unique_id=1208221698]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_g2els")
+offset = Vector2(0, -500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=720337703]
+shape = SubResource("CircleShape2D_fnrti")

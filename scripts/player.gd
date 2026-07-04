@@ -14,9 +14,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("aim_left"):
+	$ArrowSprite.rotation = angle - self.rotation
+
+	if Input.is_action_pressed("ui_left"):
 		angle -= angle_speed * delta
-	if Input.is_action_pressed("aim_right"):
+	if Input.is_action_pressed("ui_right"):
 		angle += angle_speed * delta
 	angle = clamp(angle, -1.5, 1.5)
 
