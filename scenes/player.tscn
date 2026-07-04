@@ -7,6 +7,9 @@
 radius = 16.0
 
 [node name="Player" type="RigidBody2D" unique_id=86294250]
+z_index = 10
+can_sleep = false
+continuous_cd = 2
 
 [node name="BallSprite" type="Sprite2D" parent="." unique_id=911921984]
 scale = Vector2(0.5, 0.5)
