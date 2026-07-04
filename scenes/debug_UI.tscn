@@ -14,3 +14,6 @@ layout_mode = 2
 
 [node name="DebugPlayerMaterial" type="Label" parent="VBoxContainer" unique_id=1075285868]
 layout_mode = 2
+
+[node name="DebugPlayerFriction" type="Label" parent="VBoxContainer" unique_id=2142968537]
+layout_mode = 2

@@ -25,6 +25,17 @@ var _was_stationary = false
 
 @onready var debug_ui = %DebugUI
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("stop"):
+		linear_velocity = Vector2.ZERO
+	
+
+func _physics_process(delta: float) -> void:
+	if not ground_ray.is_colliding():
+		physics_material_override.friction = 0
+	else:
+		physics_material_override.friction = 1
+
 
 func _process(delta: float) -> void:
 	visual.rotation = - self.rotation
@@ -42,6 +53,7 @@ func _process(delta: float) -> void:
 	var velocity_length_squared = linear_velocity.length_squared()
 	if debug_ui:
 		debug_ui.player_linear_velocity_size.text = "Linear velicity length: " + str(floor(velocity_length_squared))
+		debug_ui.player_debug_friction.text = "Friction: " + str(physics_material_override.friction)
 		#print(floor(velocity_length_squared))
 	
 	if _was_stationary:

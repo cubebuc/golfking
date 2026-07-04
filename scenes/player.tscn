@@ -11,6 +11,7 @@ radius = 16.0
 [node name="Player" type="RigidBody2D" unique_id=86294250]
 z_index = 10
 physics_material_override = ExtResource("1_dqkch")
+gravity_scale = 1.5
 can_sleep = false
 continuous_cd = 2
 contact_monitor = true
@@ -29,7 +30,7 @@ shape = SubResource("CircleShape2D_fnrti")
 
 [node name="RayCast2D" type="RayCast2D" parent="Visual" unique_id=2027949625]
 position = Vector2(0, 16)
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 16)
 hit_from_inside = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Visual" unique_id=814142809]
