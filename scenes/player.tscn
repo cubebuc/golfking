@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dbq8ehojckicb"]
 
 [ext_resource type="Texture2D" uid="uid://bwgj30yc88c2m" path="res://assets/ball.png" id="1_3vyb7"]
+[ext_resource type="PhysicsMaterial" uid="uid://bmffq57n7dnv2" path="res://assets/player_physics_material.tres" id="1_dqkch"]
+[ext_resource type="Script" uid="uid://bbau4jk6jx16m" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://w8chdwd1wlae" path="res://assets/arrow.png" id="2_g2els"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fnrti"]
@@ -8,22 +10,21 @@ radius = 16.0
 
 [node name="Player" type="RigidBody2D" unique_id=86294250]
 z_index = 10
+physics_material_override = ExtResource("1_dqkch")
 can_sleep = false
 continuous_cd = 2
+script = ExtResource("1_qhqgy")
 
 [node name="BallSprite" type="Sprite2D" parent="." unique_id=911921984]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_3vyb7")
 
-[node name="ArrowSprite" type="Sprite2D" parent="." unique_id=1208221698]
-scale = Vector2(0.07, 0.07)
-texture = ExtResource("2_g2els")
-offset = Vector2(0, -700)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=720337703]
 shape = SubResource("CircleShape2D_fnrti")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=814142809]
+[node name="Visual" type="Node2D" parent="." unique_id=1246167076]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Visual" unique_id=814142809]
 modulate = Color(0.69135684, 0.6913568, 0.69135684, 1)
 z_index = -1
 anchors_preset = 8
@@ -43,3 +44,8 @@ step = 0.2
 value = 39.0
 fill_mode = 4
 texture_progress = ExtResource("1_3vyb7")
+
+[node name="ArrowSprite" type="Sprite2D" parent="Visual" unique_id=1208221698]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_g2els")
+offset = Vector2(0, -700)
