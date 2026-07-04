@@ -5,24 +5,25 @@ extends RigidBody2D
 @export var power_speed: float = 1000
 @export var angle_speed: float = 1.5
 
-@export var initial_movement_threshold: float = 12.0
-@export var movement_threshold: float = 15.0
+@export var initial_movement_threshold: float = 5.0
+@export var movement_threshold: float = 200.0
 
-@export var layer_damp: Dictionary = {
-	"Map": 4,
-	"MapSand": 18
+@export var material_damp: Dictionary = {
+	"Stone": 4,
+	"Sand": 18
 }
 
 var power: float = 0
 var angle: float = 0
-var is_stationary = false
+var is_still = false
 var _was_stationary = false
 
 @onready var charge_progress_bar = $Visual/TextureProgressBar
 @onready var visual = $Visual
 @onready var arrow_sprite = $Visual/ArrowSprite
-@onready var debug_player_linear_velocity_size = %DebugPlayerLinearVelocitySize
+@onready var ground_ray = $Visual/RayCast2D
 
+@onready var debug_ui = %DebugUI
 
 
 func _process(delta: float) -> void:
@@ -36,17 +37,19 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("right"):
 		angle += angle_speed * delta
 	angle = clamp(angle, -1.5, 1.5)
-
-	_was_stationary = is_stationary
-	if debug_player_linear_velocity_size:
-		debug_player_linear_velocity_size.text = "Linear velicity length: " + str(floor(linear_velocity.length()))
+	
+	_was_stationary = is_still
+	var velocity_length_squared = linear_velocity.length_squared()
+	if debug_ui:
+		debug_ui.player_linear_velocity_size.text = "Linear velicity length: " + str(floor(velocity_length_squared))
+		#print(floor(velocity_length_squared))
 	
 	if _was_stationary:
-		is_stationary = linear_velocity.length() < movement_threshold
+		is_still = velocity_length_squared < movement_threshold
 	else:
-		is_stationary = linear_velocity.length() < initial_movement_threshold
+		is_still = velocity_length_squared < initial_movement_threshold
 	
-	if not is_stationary: 
+	if not is_still: 
 		power = 0
 		return
 	if Input.is_action_pressed("launch"):
@@ -58,8 +61,14 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	print("Player entered body: " + str(body.name))
-	if body.name == "Map":
-		self.angular_damp = layer_damp["Map"]
-	elif body.name == "MapSand":
-		self.angular_damp = layer_damp["MapSand"]
+	if body is TileMapLayer:
+		var tilemap: TileMapLayer = body
+		var point = ground_ray.get_collision_point()
+		var nudged_point = point + Vector2.DOWN * 5
+		var map_coords = tilemap.local_to_map(nudged_point)
+		var data = tilemap.get_cell_tile_data(map_coords)
+		if data:
+			var material = data.get_custom_data("Material")
+			if debug_ui:
+				debug_ui.player_debug_material.text = "material: " + material
+			self.angular_damp = material_damp[material]

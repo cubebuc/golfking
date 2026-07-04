@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbq8ehojckicb" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://csn278r5wbonv" path="res://scenes/camera.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://7a3g4y1fphxy" path="res://scenes/debug_UI.tscn" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://decdn0ienbjdx" path="res://assets/tilesets/tilemap.tscn" id="5_tbgi4"]
 
 [node name="Main" type="Node2D" unique_id=2039696867]
@@ -17,9 +18,5 @@ target = NodePath("../Player")
 [node name="TileMapLayer" parent="." unique_id=1097448669 instance=ExtResource("5_tbgi4")]
 tile_map_data = PackedByteArray("AAD9/wEAAQAKAAAAAAD+/wEAAQAKAAAAAAD//wEAAQAKAAAAAAAAAAEAAQAKAAAAAAABAAEAAQAKAAAAAAACAAEAAQAKAAAAAAADAAEAAQAHAAEAAAADAAAAAQAAAAEAAAADAP//AQAAAAEAAAADAP7/AQAAAAEAAAADAP3/AQAAAAAAAAD8/wEAAQAEAAEAAAD7/wIAAgABAAMAAAD8/wIAAgAFAAMAAAD9/wIAAgAJAAMAAAD+/wIAAgAJAAMAAAD//wIAAgAJAAMAAAAAAAIAAgAJAAMAAAABAAIAAgAJAAMAAAACAAIAAgAJAAMAAAADAAIAAgAGAAMAAAAEAAIAAgADAAMAAAD8/wAAAQAAAAEAAAD8////AQAAAAEAAAD8//7/AQAAAAEAAAD8//3/AQAAAAAAAAA=")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1530376798]
-
-[node name="DebugPlayerLinearVelocitySize" type="Label" parent="CanvasLayer" unique_id=2057899357]
+[node name="CanvasLayer" parent="." unique_id=1345950363 instance=ExtResource("4_tbgi4")]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 23.0

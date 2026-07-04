@@ -27,6 +27,11 @@ shape = SubResource("CircleShape2D_fnrti")
 
 [node name="Visual" type="Node2D" parent="." unique_id=1246167076]
 
+[node name="RayCast2D" type="RayCast2D" parent="Visual" unique_id=2027949625]
+position = Vector2(0, 16)
+target_position = Vector2(0, 20)
+hit_from_inside = true
+
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Visual" unique_id=814142809]
 modulate = Color(0.69135684, 0.6913568, 0.69135684, 1)
 z_index = -1

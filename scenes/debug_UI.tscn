@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://7a3g4y1fphxy"]
+
+[ext_resource type="Script" uid="uid://dis6xgtndeaf8" path="res://scripts/debug_ui.gd" id="1_0gkeb"]
+
+[node name="DebugUI" type="CanvasLayer" unique_id=1345950363]
+script = ExtResource("1_0gkeb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1017608048]
+offset_right = 319.0
+offset_bottom = 263.0
+
+[node name="DebugPlayerLinearVelocitySize" type="Label" parent="VBoxContainer" unique_id=124768633]
+layout_mode = 2
+
+[node name="DebugPlayerMaterial" type="Label" parent="VBoxContainer" unique_id=1075285868]
+layout_mode = 2
