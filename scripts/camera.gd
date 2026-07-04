@@ -6,5 +6,7 @@ extends Camera2D
 
 func _physics_process(delta: float) -> void:
 	if target:
-		var target_pos = target.global_position
+		var target_pos = target.global_position		
+		target_pos.x = 0
+
 		global_position = lerp(global_position, target_pos, delta * follow_speed)
